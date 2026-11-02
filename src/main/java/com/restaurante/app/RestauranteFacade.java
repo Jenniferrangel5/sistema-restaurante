@@ -1,6 +1,7 @@
 package com.restaurante.app;
 
 import com.restaurante.cardapio.Lanche;
+import com.restaurante.cardapio.LancheFactory;
 import com.restaurante.pedido.GerenciadorPedidos;
 import com.restaurante.pedido.Pedido;
 
@@ -27,9 +28,9 @@ public class RestauranteFacade {
 
     public Lanche criarLanche (int opcao){
         return switch (opcao) {
-            case 1 -> new Lanche("X-Burger", 16.00);
-            case 2 -> new Lanche("X-Salada", 18.00);
-            case 3 -> new Lanche("X-Bacon", 22.00);
+            case 1 -> LancheFactory.xBurger();
+            case 2 -> LancheFactory.xSalada();
+            case 3 -> LancheFactory.xBacon();
             default -> throw new IllegalArgumentException("Opção inválida!");
         };
     }

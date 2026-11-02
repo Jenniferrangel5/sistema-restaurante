@@ -1,5 +1,6 @@
 package com.restaurante.pedido;
 
+import com.restaurante.cardapio.ItemCardapio;
 import com.restaurante.cardapio.Lanche;
 import lombok.Getter;
 
@@ -9,19 +10,19 @@ import java.util.ArrayList;
 public class Pedido {
     private int numero;
     private String nomeCliente;
-    private ArrayList<Lanche> itens = new ArrayList<>();
+    private ArrayList<ItemCardapio> itens = new ArrayList<>();
 
     //verificar depois adicionar item null
-    public void adicionarItem(Lanche lanche){
-        if (lanche == null){
+    public void adicionarItem(ItemCardapio itens){
+        if (itens == null){
             throw new IllegalArgumentException("O lanche não pode ser vazio!");
         }
-        itens.add(lanche);
+        this.itens.add(itens);
     }
 
     public double calcularTotal(){
         double total = 0;
-        for (Lanche item : itens){
+        for (ItemCardapio item : itens){
             total = total + item.getPreco();
         } return total;
     }
