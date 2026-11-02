@@ -5,13 +5,18 @@ import lombok.Getter;
 @Getter
 //para os setters não, porque precisa lançar excessão
 
-public class Lanche {
+public class Lanche implements ItemCardapio {
     private String nome;
     private double preco;
 
     public Lanche(String nome, double preco){
         setNome(nome);
         setPreco(preco);
+    }
+
+    @Override
+    public String getDescricao() {
+        return nome;
     }
 
     //Os setter alteram os valores dos atributos

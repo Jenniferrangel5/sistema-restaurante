@@ -1,5 +1,6 @@
 package com.restaurante.app;
 
+import com.restaurante.cardapio.ItemCardapio;
 import com.restaurante.cardapio.Lanche;
 import com.restaurante.pedido.Pedido;
 
@@ -16,6 +17,15 @@ public class MenuConsole {
         3 - Fechar restaurante
         0 - Sair
         """);
+    }
+
+    public void subMenuNovoPedido (){
+        System.out.println("""
+                
+                1 - Adicionar outro lanche
+                0 - Finalizar pedido
+                """);
+
     }
 
     public int lerOpcaoLanche(){
@@ -36,8 +46,8 @@ public class MenuConsole {
         System.out.println("Pedido Nº: " + pedido.getNumero());
         System.out.println("Cliente: " + pedido.getNomeCliente());
 
-        for (Lanche lanche : pedido.getItens()) {
-            System.out.printf("%s - R$%.2f\n", lanche.getNome(), lanche.getPreco());
+        for (ItemCardapio lanche : pedido.getItens()) {
+            System.out.printf("%s - R$%.2f\n", lanche.getDescricao(), lanche.getPreco());
         }
         System.out.printf("Total: R$%.2f\n", pedido.calcularTotal());
 
