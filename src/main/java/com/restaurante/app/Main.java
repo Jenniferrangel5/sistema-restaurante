@@ -30,10 +30,19 @@ public class Main {
 
                     do {
                         int opcaoLanche = menu.lerOpcaoLanche();
+
+                        if (opcaoLanche == 0) {
+                            if (pedido.getItens().isEmpty()) {
+                                sistema.cancelarPedido(pedido.getNumero());
+                                menu.msgPedidoCancelado();
+                            }
+                            break;
+                        }
+
                         Lanche lanche = sistema.criarLanche(opcaoLanche);
 
                         personalizarLanche(menu, lanche);
-                        ItemCardapio item = adcionarExtras(menu, lanche);
+                        ItemCardapio item = adicionarExtras(menu, lanche);
 
                         pedido.adicionarItem(item);
 
@@ -41,7 +50,9 @@ public class Main {
 
                     } while (continuar == 1);
 
-                    menu.exibirPedido(pedido);
+                    if (sistema.buscarPedido(pedido.getNumero()) != null) {
+                        menu.exibirPedido(pedido);
+                    }
                 }
 
                 // Modificar pedido
@@ -65,10 +76,15 @@ public class Main {
                                 // Acrescentar item
                                 case 1 -> {
                                     int opcaoLanche = menu.lerOpcaoLanche();
+
+                                    if (opcaoLanche == 0) {
+                                        break;
+                                    }
+
                                     Lanche lanche = sistema.criarLanche(opcaoLanche);
 
                                     personalizarLanche(menu, lanche);
-                                    ItemCardapio item = adcionarExtras(menu, lanche);
+                                    ItemCardapio item = adicionarExtras(menu, lanche);
 
                                     pedido.adicionarItem(item);
                                     menu.exibirPedido(pedido);
@@ -81,6 +97,10 @@ public class Main {
 
                                     int numeroItem = menu.lerNumeroItem();
 
+                                    if (numeroItem == 0) {
+                                        break;
+                                    }
+
                                     try {
                                         pedido.removerItem(numeroItem);
                                         menu.exibirPedido(pedido);
@@ -91,9 +111,13 @@ public class Main {
 
                                 // Cancelar pedido
                                 case 3 -> {
-                                    sistema.cancelarPedido(numeroPedido);
-                                    menu.msgPedidoCancelado();
-                                    opcaoModificar = 0;
+                                    int confirmacao = menu.confirmarCancelamento();
+
+                                    if (confirmacao == 1) {
+                                        sistema.cancelarPedido(numeroPedido);
+                                        menu.msgPedidoCancelado();
+                                        opcaoModificar = 0;
+                                    }
                                 }
 
                                 case 0 -> {
@@ -163,16 +187,16 @@ public class Main {
         }
     }
 
-    static ItemCardapio adcionarExtras(MenuConsole menu, ItemCardapio item) {
+    static ItemCardapio adicionarExtras(MenuConsole menu, ItemCardapio item) {
         int opcao = menu.lerOpcaoAdicao();
 
         if (opcao == 1) {
-            int opcaoAdcional;
+            int opcaoAdicional;
 
             do {
-                opcaoAdcional = menu.lerOpcaoAdicional();
+                opcaoAdicional = menu.lerOpcaoAdicional();
 
-                switch (opcaoAdcional) {
+                switch (opcaoAdicional) {
                     case 1 -> {
                         item = new ComCheddar(item);
                     }
@@ -186,7 +210,7 @@ public class Main {
                     }
                 }
 
-            } while (opcaoAdcional != 0);
+            } while (opcaoAdicional != 0);
         }
 
         return item;
