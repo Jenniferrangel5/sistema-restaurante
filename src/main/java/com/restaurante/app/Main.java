@@ -9,7 +9,7 @@ import com.restaurante.pedido.Pedido;
 import java.util.HashSet;
 
 public class Main {
-    static void main() {
+    public static void main(String[] args) {
         MenuConsole menu = new MenuConsole();
         RestauranteFacade sistema = new RestauranteFacade();
 
