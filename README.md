@@ -100,7 +100,7 @@ O sistema será iniciado no terminal, apresentando o menu interativo para gerenc
 
 O vídeo apresenta o funcionamento do sistema, a organização dos pacotes, a aplicação de um padrão de projeto e a execução de um teste unitário.
 
-**Link do vídeo:** [Adicionar link aqui]
+**Link do vídeo:** https://youtu.be/njicSBgZTro
 
 ## 👩‍💻 Desenvolvedora
 
