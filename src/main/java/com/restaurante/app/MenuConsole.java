@@ -55,9 +55,16 @@ public class MenuConsole {
     }
 
     public String lerNomeCliente() {
-        System.out.print("Digite seu nome: ");
-        String nomeCliente = sc.nextLine();
-        return nomeCliente;
+        while (true) {
+            System.out.print("Digite seu nome: ");
+            String nomeCliente = sc.nextLine();
+
+            if (nomeCliente.isBlank()) {
+                System.out.println("O nome não pode ficar vazio!");
+            } else {
+                return nomeCliente;
+            }
+        }
     }
 
     // Menu principal
@@ -70,6 +77,17 @@ public class MenuConsole {
         4 - Fechar restaurante
         0 - Sair
         """);
+    }
+
+    public void exibirCardapio() {
+        System.out.println("""
+            
+                === CARDÁPIO ===
+            1 - X-Burger ... R$16,00
+            2 - X-Salada ... R$18,00
+            3 - X-Bacon .... R$22,00
+            0 - Cancelar
+            """);
     }
 
     // Adicionar outro lanche
@@ -121,16 +139,6 @@ public class MenuConsole {
                 """);
     }
 
-    public void exibirCardapio() {
-        System.out.println("""
-            
-                === CARDÁPIO ===
-            1 - X-Burger ... R$16,00
-            2 - X-Salada ... R$18,00
-            3 - X-Bacon .... R$22,00
-            """);
-    }
-
     public void exibirMenuModificarPedido() {
         System.out.println("""
             Qual modificação deseja realizar?
@@ -148,11 +156,11 @@ public class MenuConsole {
             exibirCardapio();
             opcaoLanche = lerOpcao();
 
-            if (opcaoLanche < 1 || opcaoLanche > 3) {
+            if (opcaoLanche < 0 || opcaoLanche > 3) {
                 msgOpcaoInvalida();
             }
 
-        } while (opcaoLanche < 1 || opcaoLanche > 3);
+        } while (opcaoLanche < 0 || opcaoLanche > 3);
 
         return opcaoLanche;
     }
@@ -253,6 +261,27 @@ public class MenuConsole {
         return opcao;
     }
 
+    public int confirmarCancelamento() {
+        int opcao;
+
+        do {
+            System.out.println("""
+                Tem certeza que deseja cancelar o pedido?
+                1 - Sim, cancelar pedido
+                2 - Não, voltar
+                """);
+
+            opcao = lerOpcao();
+
+            if (opcao != 1 && opcao != 2) {
+                msgOpcaoInvalida();
+            }
+
+        } while (opcao != 1 && opcao != 2);
+
+        return opcao;
+    }
+
     public void exibirPedido (Pedido pedido) {
         System.out.println("\nPedido Nº: " + pedido.getNumero());
         System.out.println("Cliente: " + pedido.getNomeCliente());
@@ -271,6 +300,7 @@ public class MenuConsole {
             System.out.printf("%d - %s - R$%.2f%n",
                     i + 1, item.getDescricao(), item.getPreco());
         }
+        System.out.println("0 - Cancelar remoção");
     }
 
     public void exibirCombinacoes(HashSet<String> combinacoes) {
