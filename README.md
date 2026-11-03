@@ -66,6 +66,36 @@ Para executar os testes:
 mvn test
 ```
 
+## ▶️ Como executar o projeto
+
+Para executar o sistema, é necessário ter o **Java 27** instalado.
+
+### 1. Gerar o arquivo executável
+
+Na pasta raiz do projeto, execute:
+
+```bash
+mvn clean package
+```
+
+O Maven irá compilar o projeto, executar os testes e gerar o arquivo:
+
+```text
+target/sistema-restaurante-1.0-SNAPSHOT.jar
+```
+
+### 2. Executar o restaurante
+
+No terminal, execute:
+
+```bash
+java -jar target/sistema-restaurante-1.0-SNAPSHOT.jar
+```
+
+O sistema será iniciado no terminal, apresentando o menu interativo para gerenciamento dos pedidos.
+
+**Observação:** o sistema funciona pelo console e não necessita do IntelliJ IDEA para ser executado.
+
 ## 🎥 Vídeo de demonstração
 
 O vídeo apresenta o funcionamento do sistema, a organização dos pacotes, a aplicação de um padrão de projeto e a execução de um teste unitário.
