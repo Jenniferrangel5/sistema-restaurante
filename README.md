@@ -23,6 +23,11 @@ O projeto foi implementado por **Jennifer Rangel**, aplicando conceitos de Progr
 - Identificação das combinações diferentes vendidas.
 - Validação de entradas e tratamento de opções inválidas.
 
+## 🎁 Funcionalidade Bônus
+
+- Geração de arquivo executável `.jar` utilizando Maven.
+- Execução do sistema pelo terminal com Java 27.
+
 ## 🛠️ Tecnologias e conceitos aplicados
 
 - **Linguagem:** Java 27.
