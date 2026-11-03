@@ -1,7 +1,10 @@
 package com.restaurante.pedido;
 
+import com.restaurante.cardapio.ItemCardapio;
+
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class GerenciadorPedidos {
@@ -23,7 +26,6 @@ public class GerenciadorPedidos {
 
     // retorna todos os pedidos
     // List.copyOf() permite consultar, mas não fazer alterações
-
     public Collection<Pedido> getPedidos(){
         return List.copyOf(pedidos.values());
     }
@@ -34,5 +36,20 @@ public class GerenciadorPedidos {
         for (Pedido p : pedidos.values()) {
             total += p.calcularTotal();
         } return total;
+    }
+
+    public void cancelarPedido (int numeroPedido){
+        pedidos.remove(numeroPedido);
+    }
+
+    public HashSet<String> listarCombinacoes(){
+        HashSet<String> combinacoes = new HashSet<>();
+
+        for (Pedido pedido : pedidos.values()){
+            for (ItemCardapio item : pedido.getItens()){
+                combinacoes.add(item.getDescricao());
+            }
+        }
+        return combinacoes;
     }
 }

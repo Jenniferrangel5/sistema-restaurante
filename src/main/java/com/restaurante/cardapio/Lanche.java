@@ -2,12 +2,17 @@ package com.restaurante.cardapio;
 
 import lombok.Getter;
 
-@Getter
-//para os setters não, porque precisa lançar excessão
-
 public class Lanche implements ItemCardapio {
+    @Getter
     private String nome;
+
+    @Getter
     private double preco;
+
+    private boolean queijo = true;
+    private boolean alface = true;
+    private boolean tomate = true;
+    private boolean cebola = true;
 
     public Lanche(String nome, double preco){
         setNome(nome);
@@ -16,7 +21,21 @@ public class Lanche implements ItemCardapio {
 
     @Override
     public String getDescricao() {
-        return nome;
+        String desc = nome;
+
+        if (!queijo) {
+            desc += " sem queijo";
+        }
+        if (!alface) {
+            desc += " sem alface";
+        }
+        if (!tomate) {
+            desc += " sem tomate";
+        }
+        if (!cebola) {
+            desc += " sem cebola";
+        }
+        return desc;
     }
 
     //Os setter alteram os valores dos atributos
@@ -33,5 +52,37 @@ public class Lanche implements ItemCardapio {
             throw new IllegalArgumentException("Valor não pode ser negativo!");
         }
         this.preco = preco;
+    }
+
+    public boolean isQueijo(){
+        return queijo;
+    }
+
+    public void setQueijo(boolean queijo){
+        this.queijo = queijo;
+    }
+
+    public boolean isAlface(){
+        return alface;
+    }
+
+    public void setAlface(boolean alface){
+        this.alface = alface;
+    }
+
+    public boolean isTomate(){
+        return tomate;
+    }
+
+    public void setTomate(boolean tomate){
+        this.tomate = tomate;
+    }
+
+    public boolean isCebola(){
+        return cebola;
+    }
+
+    public void setCebola(boolean cebola){
+        this.cebola = cebola;
     }
 }

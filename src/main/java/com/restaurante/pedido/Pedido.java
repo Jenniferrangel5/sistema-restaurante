@@ -1,7 +1,6 @@
 package com.restaurante.pedido;
 
 import com.restaurante.cardapio.ItemCardapio;
-import com.restaurante.cardapio.Lanche;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -18,6 +17,13 @@ public class Pedido {
             throw new IllegalArgumentException("O lanche não pode ser vazio!");
         }
         this.itens.add(itens);
+    }
+
+    public void removerItem(int numeroItem){
+        if (numeroItem < 1 || numeroItem > itens.size()){
+            throw new IllegalArgumentException("Item não encontrado!");
+        }
+        this.itens.remove(numeroItem -1);
     }
 
     public double calcularTotal(){
